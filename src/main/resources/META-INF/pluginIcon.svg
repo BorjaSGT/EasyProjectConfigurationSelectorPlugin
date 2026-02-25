@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <!-- Fondo con bordes redondeados -->
+  <rect x="2" y="2" width="36" height="36" rx="8" fill="#6A0DAD"/>
+  
+  <!-- Letras en diagonal -->
+  <text x="7" y="28" font-family="JetBrains Mono, Arial, sans-serif" font-size="26" fill="#FFFFFF">B</text>
+  <text x="17" y="32" font-family="JetBrains Mono, Arial, sans-serif" font-size="26" fill="#FFFFFF">S</text>
+</svg>

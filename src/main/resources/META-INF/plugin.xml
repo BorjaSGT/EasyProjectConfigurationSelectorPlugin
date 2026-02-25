@@ -1,0 +1,64 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.bsg.easyconfig.EasyProjectConfigurationSelector</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>Easy Project Configuration Selector</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor>Borja Salamanca</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+    <description><![CDATA[
+        Easy Project Configuration Selector allows you to quickly switch between different environment configurations.
+        Define multiple environments (dev, staging, production, etc.) and their corresponding configuration file contents.
+        Switch between environments with a single click from the toolbar, and the plugin will automatically update your
+        configuration file. Perfect for managing appsettings.json, .env files, or any other configuration files in your projects.
+    ]]></description>
+
+    <version>1.0.0</version>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Project service to manage configuration -->
+        <projectService serviceImplementation="com.bsg.easyconfig.services.EnvironmentConfigurationService"/>
+    </extensions>
+    
+    <projectListeners>
+        <!-- Listener para auto-detectar entorno al abrir proyecto -->
+        <listener class="com.bsg.easyconfig.listeners.ProjectOpenListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </projectListeners>
+
+    <actions>
+        <!-- Action to open configuration dialog -->
+        <action id="com.bsg.easyconfig.actions.ConfigureEnvironmentsAction"
+                class="com.bsg.easyconfig.actions.ConfigureEnvironmentsAction"
+                text="Configure Environments..."
+                description="Configure environment settings for quick configuration switching">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+        
+        <!-- Group to keep selector and configure button together in order -->
+        <group id="com.bsg.easyconfig.ToolbarGroup">
+            <action id="com.bsg.easyconfig.actions.EnvironmentComboBoxAction"
+                    class="com.bsg.easyconfig.actions.EnvironmentComboBoxAction"
+                    text="Environment Selector"
+                    description="Select and switch between environment configurations"/>
+            <action id="com.bsg.easyconfig.actions.ConfigureEnvironmentsToolbarAction"
+                    class="com.bsg.easyconfig.actions.ConfigureEnvironmentsToolbarAction"
+                    text="Configure Environments"
+                    description="Open environment configuration dialog"
+                    icon="AllIcons.General.Settings"/>
+            <add-to-group group-id="MainToolbarRight" anchor="first"/>
+        </group>
+    </actions>
+</idea-plugin>

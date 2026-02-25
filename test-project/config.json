@@ -1,0 +1,6 @@
+{
+  "environment": "default",
+  "debug": false,
+  "apiUrl": "https://api.example.com",
+  "timeout": 5000
+}
