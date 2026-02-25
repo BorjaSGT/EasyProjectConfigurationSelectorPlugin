@@ -45,10 +45,10 @@ class EnvironmentConfigDialog(private val project: Project) : DialogWrapper(proj
         topPanel.border = BorderFactory.createTitledBorder("Target Configuration File")
         
         targetFileField.addBrowseFolderListener(
-            "Select Configuration File",
-            "Choose the file to be managed by environment switching",
             project,
-            FileChooserDescriptorFactory.createSingleFileDescriptor()
+            FileChooserDescriptorFactory.singleFile()
+                .withTitle("Select Configuration File")
+                .withDescription("Choose the file to be managed by environment switching")
         )
         
         topPanel.add(targetFileField, BorderLayout.CENTER)

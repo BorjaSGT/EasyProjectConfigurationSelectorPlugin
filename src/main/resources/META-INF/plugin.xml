@@ -30,13 +30,10 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Project service to manage configuration -->
         <projectService serviceImplementation="com.bsg.easyconfig.services.EnvironmentConfigurationService"/>
+        
+        <!-- Auto-detect environment on project open -->
+        <postStartupActivity implementation="com.bsg.easyconfig.listeners.ProjectOpenListener"/>
     </extensions>
-    
-    <projectListeners>
-        <!-- Listener para auto-detectar entorno al abrir proyecto -->
-        <listener class="com.bsg.easyconfig.listeners.ProjectOpenListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </projectListeners>
 
     <actions>
         <!-- Action to open configuration dialog -->
